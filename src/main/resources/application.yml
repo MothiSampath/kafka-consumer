@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: kafka-consumer
+server:
+  kafka:
+    host: localhost:9092
+    topic:
+      test: TestTopic
+      group: test1
+message:
+  file:
+    path: C:/Mothi/TopicMessages
