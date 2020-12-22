@@ -42,9 +42,9 @@ public class KafkaConsumerConfig {
         config.put(ConsumerConfig.GROUP_ID_CONFIG, templateGroup);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
-//        config.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");
-//        config.put(SaslConfigs.SASL_JAAS_CONFIG, jaasConfig);
-//        config.put(SaslConfigs.SASL_MECHANISM, "PLAIN");
+        config.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");
+        config.put(SaslConfigs.SASL_JAAS_CONFIG, jaasConfig);
+        config.put(SaslConfigs.SASL_MECHANISM, "PLAIN");
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), deserializer);
     }
 
