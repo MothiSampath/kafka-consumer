@@ -1,5 +1,6 @@
 package com.example.kafkaconsumer.listeners;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -22,9 +23,9 @@ public class KafkaConsumer {
             groupId = "#{'${server.kafka.topic.group}'}",
             containerFactory = "kafkaListenerContainerFactory")
     public void consumeTestTopic(ConsumerRecord message) throws IOException {
-        System.out.println("mothi>>>>>>>>" +message.value().toString());
+        System.out.println("Topic Data>>>>>" +new ObjectMapper().writeValueAsString(message.value()));
         FileWriter file = new FileWriter(path+"/TestTopic-"+ LocalDateTime.now().format(FORMATTER)+".json");
-        file.write(message.value().toString());
+        file.write(new ObjectMapper().writeValueAsString(message.value()));
         file.close();
     }
 
